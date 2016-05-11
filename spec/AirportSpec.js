@@ -23,4 +23,15 @@ describe('Airport', function(){
     airport.clearForTakeOff(plane)
     expect(airport.planes()).not.toContain(plane)
   })
+
+  it('can check for stormy conditions', function(){
+    expect(airport.isStormy().toBeFalsy)
+  })
+
+  describe('unders stormy conditions', function(){
+    it('does not clear planes for takeoff', function(){
+      spyOn(airport, 'isStormy').and.returnValue(true)
+      expect(function(){airport.clearForTakeOff(plane)}).toThrowError('cannot takeoff during storm')
+    })
+  })
 })
