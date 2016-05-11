@@ -11,7 +11,7 @@ describe('Feature Test:', function(){
 
   describe('under normal conditions',function(){
       beforeEach(function(){
-        spyOn(airport._weather,'isStormy').and.returnValue(true)
+        spyOn(airport._weather,'isStormy').and.returnValue(false)
         // spyOn(Math,'random').and.returnValue(0)
       })
 
@@ -30,8 +30,8 @@ describe('Feature Test:', function(){
     describe('under stormy conditions',function(){
 
       it('blocks takeoff when weather is stormy', function(){
-        spyOn(airport._weather,'isStormy').and.returnValue(false)
-        // spyOn(Math,'random').and.returnValue(0)
+        // spyOn(airport._weather,'isStormy').and.returnValue(false)
+        spyOn(Math,'random').and.returnValue(0)
         plane.land(airport)
         spyOn(airport._weather,'isStormy').and.returnValue(true)
         expect(function(){ plane.takeoff()}).toThrowError('cannot takeoff during storm')

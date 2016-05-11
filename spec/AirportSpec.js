@@ -22,13 +22,13 @@ describe('Airport', function(){
 
     it('can clear planes for landing', function(){
       airport.clearForLanding(plane)
-      expect(airport.planes()).toEqual([plane])
+      expect(airport.planes()).toContain(plane)
     })
 
     it('can clear planes for takeoff', function(){
       airport.clearForLanding(plane)
       airport.clearForTakeOff(plane)
-      expect(airport.planes()).toEqual([])
+      expect(airport.planes()).not.toContain(plane)
     })
   })
 
